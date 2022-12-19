@@ -29,27 +29,23 @@ public class ProductService {
         return responses;
     }
 
-    public List<ProductResponse> getProductByName(String name){
-        List<ProductResponse> responses = new ArrayList<>();
-        List<Product> found =  productRepository.findByNameContaining(name);
-        responses = found.stream().map(p -> new ProductResponse(p)).collect(Collectors.toList());
+    public ProductResponse getProductByName(String name){
+        Product found = productRepository.findByNameContaining(name);
 
-        return responses;
+        return new ProductResponse(found);
     }
 
     public void deleteProduct(int id){
         productRepository.deleteById(id);
     }
 
-    public void updateProduct(int id, ProductRequest pr){
+    public void updateProduct(String name, ProductRequest pr){
 
-        Optional<Product> product = productRepository.findById(id);
-        if (product.isPresent()) {
-            product.get().setName(pr.getName());
-            product.get().setPrice(pr.getPrice());
-            product.get().setWeight(pr.getWeight());
+        Product product = productRepository.findByNameContaining(name);
+            product.setName(pr.getName());
+            product.setPrice(pr.getPrice());
+            product.setWeight(pr.getWeight());
 
-            productRepository.save(product.get());
-        }
+            productRepository.save(product);
     }
 }

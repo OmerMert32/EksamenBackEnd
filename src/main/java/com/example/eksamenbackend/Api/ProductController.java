@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/{name}")
-    public List<ProductResponse> getProductByName(@PathVariable String name){
+    public ProductResponse getProductByName(@PathVariable String name){
         return productService.getProductByName(name);
     }
 
@@ -38,8 +38,8 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PatchMapping("/{id}")
-    public void updateProduct(@PathVariable int id, @RequestBody ProductRequest pr){
-        productService.updateProduct(id, pr);
+    @PatchMapping("/{name}")
+    public void updateProduct(@PathVariable String name, @RequestBody ProductRequest pr){
+        productService.updateProduct(name, pr);
     }
 }
