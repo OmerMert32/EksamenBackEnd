@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -17,11 +16,12 @@ import java.util.List;
 public class ProductOrder {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     int quantity;
 
     @ManyToOne
     @JoinColumn(name = "products_product_id")
-    Product products;
+    Product product;
 }
