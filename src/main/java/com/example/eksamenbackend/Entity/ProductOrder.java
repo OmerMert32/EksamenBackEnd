@@ -19,11 +19,9 @@ public class ProductOrder {
     @Id
     int id;
 
-    @ManyToOne
-    @JoinColumn(name = "delivery_id")
-    Delivery delivery;
+    int quantity;
 
-    @OneToMany
-    @JoinColumn(name = "product_product_id")
-    List<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "products_product_id")
+    Product products;
 }
