@@ -37,6 +37,18 @@ public class SetUpWorkEnvironment implements ApplicationRunner {
         Product proteinpulver = new Product("Proteinpulver", 180, 1000);
         productService.save(proteinpulver);
 
+        Product tun = new Product("Tun", 14, 200);
+        productService.save(tun);
+
+        Product kako = new Product("Kako", 20, 100);
+        productService.save(kako);
+
+        Product oksekød = new Product("Økologisk Oksekød", 43, 350);
+        productService.save(oksekød);
+
+        Product hvedemel = new Product("Hvedemel", 9, 1000);
+        productService.save(hvedemel);
+
 
         ProductOrder productOrder = new ProductOrder(1, 2, mælk);
         productOrderService.save(productOrder);
@@ -49,7 +61,7 @@ public class SetUpWorkEnvironment implements ApplicationRunner {
         productOrders.add(productOrder1);
 
 
-        Delivery delivery = new Delivery("W1", "Ömer Mert, Grønrisvej 4", productOrders);
+        Delivery delivery = new Delivery(LocalDate.now(),"Varehus 1", "Ömer Mert, Grønrisvej 4", productOrders);
         deliveryService.save(delivery);
     }
 }

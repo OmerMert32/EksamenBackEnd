@@ -44,6 +44,23 @@ public class Delivery {
         this.destination = request.getDestination();
     }
 
+    public Delivery(LocalDate deliveryDate, String fromWareHouse, String destination, List<ProductOrder> productOrder) {
+        this.deliveryDate = deliveryDate;
+        this.fromWareHouse = fromWareHouse;
+        this.destination = destination;
+        this.productOrder = productOrder;
+        int totalprice = 0;
+        for (ProductOrder order : productOrder) {
+            totalprice += order.getProduct().getPrice() * order.getQuantity();
+        }
+        this.totalPrice = totalprice;
+
+        int totalWeight = 0;
+        for (ProductOrder order : productOrder){
+            totalWeight += order.getProduct().getWeight() * order.getQuantity();
+        }
+        this.totalWeight = totalWeight;
+    }
     public Delivery(String fromWareHouse, String destination, List<ProductOrder> productOrder) {
         this.fromWareHouse = fromWareHouse;
         this.destination = destination;
