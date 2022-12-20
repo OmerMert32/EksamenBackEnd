@@ -24,9 +24,9 @@ public class DeliveryController {
         return deliveryService.getDeliveries();
     }
 
-    @GetMapping("/value")
-    public List<DeliveryResponse> getDeliveryByDestination(@PathVariable String value){
-        return deliveryService.findByDestinationContaining(value);
+    @GetMapping("/{destination}")
+    public List<DeliveryResponse> getDeliveryByDestination(@PathVariable String destination){
+        return deliveryService.findByDestinationContaining(destination);
     }
 
     @PostMapping
@@ -35,7 +35,7 @@ public class DeliveryController {
         deliveryService.save(newDelivery);
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public void addProductOrder(@PathVariable int id, @RequestBody ProductOrder productOrder){
         deliveryService.addProductOrder(id, productOrder);
     }

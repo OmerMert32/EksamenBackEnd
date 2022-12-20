@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    LocalDateTime deliveryDate;
+    LocalDate deliveryDate;
 
     String fromWareHouse;
 
@@ -38,13 +39,12 @@ public class Delivery {
 
 
     public Delivery(DeliveryRequest request){
-        this.deliveryDate = request.getDeliveryDate();
+        this.deliveryDate = LocalDate.now().plusDays(1);
         this.fromWareHouse = request.getFromWareHouse();
         this.destination = request.getDestination();
     }
 
-    public Delivery(LocalDateTime deliveryDate, String fromWareHouse, String destination, List<ProductOrder> productOrder) {
-        this.deliveryDate = deliveryDate;
+    public Delivery(String fromWareHouse, String destination, List<ProductOrder> productOrder) {
         this.fromWareHouse = fromWareHouse;
         this.destination = destination;
         this.productOrder = productOrder;

@@ -27,15 +27,20 @@ public class ProductController {
         return productService.getProductByName(name);
     }
 
+    @GetMapping("/s/{name}")
+    public List<ProductResponse> getProductsByName(@PathVariable String name){
+        return productService.getProductsByName(name);
+    }
+
     @PostMapping
     public void addProduct(@RequestBody ProductRequest request){
         Product newProduct = new Product(request);
         productService.save(newProduct);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable int id){
-        productService.deleteProduct(id);
+    @DeleteMapping("/{name}")
+    public void deleteProduct(@PathVariable String name){
+        productService.deleteByName(name);
     }
 
     @PatchMapping("/{name}")

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 public class DeliveryResponse {
 
-    LocalDateTime deliveryDate;
+    int id;
+    LocalDate deliveryDate;
 
     String fromWareHouse;
 
@@ -30,6 +32,7 @@ public class DeliveryResponse {
 
 
     public DeliveryResponse(Delivery d){
+        this.id = d.getId();
         this.deliveryDate = d.getDeliveryDate();
         this.fromWareHouse = d.getFromWareHouse();
         this.destination = d.getDestination();

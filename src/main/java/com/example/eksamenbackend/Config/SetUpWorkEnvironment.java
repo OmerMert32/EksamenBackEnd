@@ -11,6 +11,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +49,8 @@ public class SetUpWorkEnvironment implements ApplicationRunner {
         productOrders.add(productOrder1);
 
 
-        Delivery delivery = new Delivery(LocalDateTime.now().plusDays(1), "W1", "Ömer Mert, Grønrisvej 4", productOrders);
+        Delivery delivery = new Delivery("W1", "Ömer Mert, Grønrisvej 4", productOrders);
         deliveryService.save(delivery);
-
-
-
-
     }
 }
 
