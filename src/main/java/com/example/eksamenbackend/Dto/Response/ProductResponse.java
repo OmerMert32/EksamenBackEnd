@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductResponse {
 
-
+    int id;
     String name;
 
     int price;
@@ -19,6 +19,7 @@ public class ProductResponse {
 
 
     public ProductResponse(Product p){
+        this.id = p.getProductId();
         this.name = p.getName();
         this.price = p.getPrice();
         this.weight = p.getWeight();

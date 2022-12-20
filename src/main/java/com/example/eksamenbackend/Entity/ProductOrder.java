@@ -24,4 +24,12 @@ public class ProductOrder {
     @ManyToOne
     @JoinColumn(name = "products_product_id")
     Product product;
+
+
+    public ProductOrder(int quantity, Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 }
+
+

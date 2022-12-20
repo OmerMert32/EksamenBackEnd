@@ -31,17 +31,20 @@ public class DeliveryService {
     }
 
     public void addProductOrder(int id, ProductOrder productOrder){
+        productOrderService.save(productOrder);
         Optional<Delivery> delivery = deliveryRepository.findById(id);
         if (delivery.isPresent()) {
+            delivery.get().setTotalPrice(delivery.get().getTotalPrice() + productOrder.getProduct().getPrice() * productOrder.getQuantity());
+            delivery.get().setTotalWeight(delivery.get().getTotalWeight() + productOrder.getProduct().getWeight() * productOrder.getQuantity());
             delivery.get().getProductOrder().add(productOrder);
             deliveryRepository.save(delivery.get());
         }
     }
 
-    public List<DeliveryResponse> findByDestinationContaining(String value){
-        List<Delivery> deliveries = deliveryRepository.findByDestinationContaining(value);
-        List<DeliveryResponse> responses = deliveries.stream().map(d -> new DeliveryResponse(d)).collect(Collectors.toList());
+    public DeliveryResponse findByDestinationContaining(String value){
 
-        return responses;
+        Delivery delivery = deliveryRepository.findByDestinationContaining(value);
+
+        return new DeliveryResponse(delivery);
     }
 }

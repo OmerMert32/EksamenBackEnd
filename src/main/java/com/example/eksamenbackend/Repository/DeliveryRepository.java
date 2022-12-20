@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
 
-    List<Delivery> findByDestinationContaining(String value);
+    Delivery findByDestinationContaining(String value);
+
 
 
     List<Delivery> deleteByProductOrderEquals(ProductOrder productOrder);
