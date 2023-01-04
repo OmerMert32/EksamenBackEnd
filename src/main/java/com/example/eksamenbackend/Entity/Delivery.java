@@ -30,6 +30,7 @@ public class Delivery {
 
     String destination;
 
+    @OneToMany
     List<ProductOrder> productOrder;
 
     int totalPrice;
