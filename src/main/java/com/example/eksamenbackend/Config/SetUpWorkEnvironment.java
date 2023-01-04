@@ -12,7 +12,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class SetUpWorkEnvironment implements ApplicationRunner {
         Product tun = new Product("Tun", 14, 200);
         productService.save(tun);
 
-        Product kako = new Product("Kako", 20, 100);
+        Product kako = new Product("Kakao", 20, 100);
         productService.save(kako);
 
         Product oksekød = new Product("Økologisk Oksekød", 43, 350);

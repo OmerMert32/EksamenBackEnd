@@ -5,6 +5,7 @@ import com.example.eksamenbackend.Dto.Response.ProductResponse;
 import com.example.eksamenbackend.Entity.Product;
 import com.example.eksamenbackend.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class ProductController {
         Product newProduct = new Product(request);
         productService.save(newProduct);
     }
+
 
     @DeleteMapping("/{name}")
     public void deleteProduct(@PathVariable String name){

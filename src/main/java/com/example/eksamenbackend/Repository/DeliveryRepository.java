@@ -10,8 +10,7 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Integer> {
 
     Delivery findByDestinationContaining(String value);
 
-
-
-    List<Delivery> deleteByProductOrderEquals(ProductOrder productOrder);
+    List<Delivery> findDeliveryByDestinationContaining(String value);
+    Delivery findDeliveryByDestination(String value);
 
 }

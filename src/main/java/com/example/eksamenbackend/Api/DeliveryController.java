@@ -36,14 +36,12 @@ public class DeliveryController {
 
     @GetMapping("/{destination}")
     public DeliveryResponse getDeliveryByDestination(@PathVariable String destination){
-        return deliveryService.findByDestinationContaining(destination);
+        return deliveryService.findByDestination(destination);
     }
 
     @GetMapping("/s/{destination}")
     public List<DeliveryResponse> getDeliveriesByDestination(@PathVariable String destination){
-        List<DeliveryResponse> deliveryResponses = new ArrayList<>();
-        deliveryResponses.add(deliveryService.findByDestinationContaining(destination));
-        return deliveryResponses;
+        return deliveryService.findByDestinationContaining(destination);
     }
     @PostMapping
     public void addDelivery(@RequestBody DeliveryRequest request){

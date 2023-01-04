@@ -41,10 +41,19 @@ public class DeliveryService {
         }
     }
 
-    public DeliveryResponse findByDestinationContaining(String value){
+    public DeliveryResponse findByDestination(String value){
 
-        Delivery delivery = deliveryRepository.findByDestinationContaining(value);
+        Delivery delivery = deliveryRepository.findDeliveryByDestination(value);
 
         return new DeliveryResponse(delivery);
+    }
+
+
+    public List<DeliveryResponse> findByDestinationContaining(String value){
+
+        List<Delivery> delivery = deliveryRepository.findDeliveryByDestinationContaining(value);
+
+        List<DeliveryResponse> responses = delivery.stream().map(d -> new DeliveryResponse(d)).collect(Collectors.toList());
+        return responses;
     }
 }

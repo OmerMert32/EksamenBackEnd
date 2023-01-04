@@ -2,18 +2,16 @@ package com.example.eksamenbackend.Service;
 
 import com.example.eksamenbackend.Dto.Request.ProductRequest;
 import com.example.eksamenbackend.Dto.Response.ProductResponse;
-import com.example.eksamenbackend.Entity.Delivery;
 import com.example.eksamenbackend.Entity.Product;
-import com.example.eksamenbackend.Entity.ProductOrder;
 import com.example.eksamenbackend.Repository.DeliveryRepository;
 import com.example.eksamenbackend.Repository.ProductOrderRepository;
 import com.example.eksamenbackend.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,16 +41,9 @@ public class ProductService {
         return new ProductResponse(found);
     }
 
+    @Transactional
     public void deleteByName(String name){
-        List<ProductOrder> productOrders = productOrderRepository.findByProductContaining(name);
-
-        for (ProductOrder order : productOrders){
-            deliveryRepository.deleteByProductOrderEquals(order);
-        }
-        for (ProductOrder order : productOrders){
-            productOrderRepository.delete(order);
-        }
-        productRepository.deleteByName(name);
+        productRepository.deleteProductByName(name);
     }
 
     public void updateProduct(String name, ProductRequest pr){
