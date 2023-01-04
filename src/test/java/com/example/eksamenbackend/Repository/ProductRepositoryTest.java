@@ -22,7 +22,7 @@ class ProductRepositoryTest {
     }
     @Test
     void deleteByName() {
-        productRepository.deleteByName("Kakao");
+        productRepository.deleteProductByName("Kakao");
 
         assertEquals(0, productRepository.findAll().size());
     }
